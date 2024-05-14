@@ -67,13 +67,15 @@ def draw_point(x, y, z, color):
 
 def test_draw_anchored_boxes():
     # Example set of points Y
-    Y = [[3, 2, 4], [1, 6, 3], [5, 5, 1], [4, 3, 2], [5, 3, 5], [1, 1, 6], [2, 5, 2]]
+    Y = [[3, 2, 4], [1, 6, 3], [6, 5, 1], [5, 5, 2], [5,3,3], [2, 3, 5],[3,2,5], [1, 1, 6], [2, 5, 2]]
+    yplus = [4, 4, 4]
     # Compute non-dominated points
     non_dominated = non_dominated_points(Y)
     # Anchor point
     anchor = [0, 0, 0]
     # Base color for boxes
     base_color = (255, 165, 0)
+    plus_color = (0, 255, 0)
     # Point color
     point_color = 'blue'
 
@@ -85,6 +87,11 @@ def test_draw_anchored_boxes():
             fig.add_trace(face)
         # Draw a point at the upper corner
         fig.add_trace(draw_point(ubx, uby, ubz, point_color))
+        ubx_yplus, uby_yplus, ubz_yplus = yplus
+        for face_yplus in draw_box(0,0,0,ubx_yplus,uby_yplus,ubz_yplus,plus_color):
+            fig.add_trace(face_yplus)
+        # draw yplus point
+        fig.add_trace(draw_point(ubx_yplus, uby_yplus, ubz_yplus, point_color))
 
     # Set the layout for the 3D plot
     fig.update_layout(
