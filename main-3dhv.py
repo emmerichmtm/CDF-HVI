@@ -1,5 +1,9 @@
 import plotly.graph_objects as go
+import plotly.io as pio
 
+
+# Set the default template to "plotly_white"
+pio.templates.default = "plotly_white"
 def non_dominated_points(points):
     """ Filters non-dominated points assuming all objectives are to be maximized """
     dominated = set()
@@ -80,7 +84,13 @@ def test_draw_anchored_boxes():
     point_color = 'blue'
 
     # Create a figure and add the boxes for each non-dominated point
-    fig = go.Figure()
+
+    layout = go.Layout(
+        plot_bgcolor='white',  # Sets the plot background color
+        paper_bgcolor='white'  # Sets the area around the plot background color
+    )
+    fig = go.Figure(layout=layout)
+
     for point in non_dominated:
         ubx, uby, ubz = point
         for face in draw_box(0, 0, 0, ubx, uby, ubz, base_color):
@@ -107,6 +117,9 @@ def test_draw_anchored_boxes():
     # Show the plot
     fig.show()
 
+    # Export the figure as a PNG
+    # require kaleido v1.* not v2.!
+    #fig.write_image("figure.png", engine="kaleido")
 test_draw_anchored_boxes()
 
 # compute the hypervolume of the non-dominated points
