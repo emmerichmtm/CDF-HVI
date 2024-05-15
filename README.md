@@ -6,6 +6,7 @@ This project includes Python scripts designed to visualize the hypervolume indic
 ### Scripts Description
 - `main.py`: Visualizes the hypervolume covered by a set of points and the areas where the hypervolume increases significantly when new points are added.
 - `main_level_curve_with_correlated_gaussian.py`: Extends the basic visualization by overlaying a contour plot of a correlated Gaussian distribution, offering insights into probabilistic modeling aspects on top of the optimization landscape.
+- `main-3dhv.py`: This script visualizes the hypervolume over a 3-D point set. For the sake of ease of visualization and avoiding negative signs wer switch to maximization objectives.
 
 ## Features
 - **Calculate Hypervolume**: Compute the hypervolume covered by a set of points.
